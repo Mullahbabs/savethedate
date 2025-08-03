@@ -121,29 +121,28 @@
         top: -10px;
         left: -10px;
         transform: rotate(-45deg);
-        color: #ae7729;
-        background: linear-gradient(225deg, var(--secondary-color), #e8c39e);
+        background: linear-gradient(225deg, var(--secondary-color), #ae7729);
       }
 
       .ribbon-top-right {
         top: -10px;
         right: -10px;
         transform: rotate(45deg);
-        background: linear-gradient(225deg, var(--secondary-color), #e8c39e);
+        background: linear-gradient(225deg, var(--secondary-color), #ae7729);
       }
 
       .ribbon-bottom-left {
         bottom: -10px;
         left: -10px;
         transform: rotate(45deg);
-        background: linear-gradient(45deg, var(--secondary-color), #e8c39e);
+        background: linear-gradient(45deg, var(--secondary-color), #ae7729);
       }
 
       .ribbon-bottom-right {
         bottom: -10px;
         right: -10px;
         transform: rotate(-45deg);
-        background: linear-gradient(315deg, var(--secondary-color), #e8c39e);
+        background: linear-gradient(315deg, var(--secondary-color), #ae7729);
       }
 
       /* Ribbon Fold Effect */
@@ -203,7 +202,7 @@
 
       .couple-names {
         font-family: "Great Vibes", cursive;
-        font-size: 2.5rem;
+        font-size: 3.8rem;
         font-weight: 400;
         margin: 16px 0;
         line-height: 1.2;
@@ -248,7 +247,7 @@
 
       /* Countdown Timer Styles */
       .countdown-container {
-        margin: 10px;
+        margin: 7px;
         padding: 40px;
         background-color: transparent;
         border-radius: 10px;
@@ -257,7 +256,7 @@
       .countdown-title {
         font-family: "Playfair Display", serif;
         color: var(--primary-color);
-        margin-bottom: 15px;
+        margin-bottom: 8px;
         font-size: 1rem;
       }
 
@@ -298,7 +297,7 @@
         align-items: center;
         width: 100%;
         gap: 10px;
-        margin-top: 15px;
+        margin-top: 10px;
       }
 
       .btn {
@@ -306,7 +305,7 @@
         border: none;
         border-radius: 50px;
         font-size: 16px;
-        font-weight: 250;
+        font-weight: 350;
         cursor: pointer;
         transition: all 0.3s ease;
         text-transform: none;
@@ -320,7 +319,7 @@
 
       .btn-attend {
         background-color: transparent;
-        color: #c79c60;
+        color: #ae7729;
         border: 1px solid #ae7729;
       }
 
@@ -774,7 +773,7 @@
 
         // Countdown Timer
         function updateCountdown() {
-          const weddingDate = new Date("February 11, 2026 12:00:00").getTime();
+          const weddingDate = new Date("February 11, 2026 00:00:00").getTime();
           const now = new Date().getTime();
           const distance = weddingDate - now;
 
