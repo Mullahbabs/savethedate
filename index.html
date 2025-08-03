@@ -28,6 +28,8 @@
         --text-color: #333;
         --light-color: #f9f5f0;
         --modal-bg: rgba(0, 0, 0, 0.7);
+        --ribbon-color: #d4a76a;
+        --ribbon-shadow: #ae7729;
       }
 
       * {
@@ -86,105 +88,151 @@
         background-color: #fee5e6;
       }
       /* Base Ribbon Styles */
-      .ribbon {
+      .ribbon-bow {
         position: absolute;
-        width: 70px;
-        height: 70px;
-        background-color: transparent;
-        border-radius: 50px;
-        opacity: 0.8;
+        width: 80px;
+        height: 80px;
+        z-index: 10;
+      }
+
+      /* Bow Center Knot */
+      .ribbon-bow::before {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: var(--ribbon-shadow);
+        border-radius: 10%;
+        z-index: 3;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Bow Loops */
+      .ribbon-bow::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 30px;
+        background: var(--ribbon-color);
+        border-radius: 20% 20% 0 0;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      /* Ribbon Tails */
+      .ribbon-tail {
+        position: absolute;
+        background: var(--ribbon-color);
+        width: 60px;
+        height: 12px;
         z-index: 1;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
       }
-      .ribbon::after {
-        content: "";
+
+      /* Ribbon Folds */
+      .ribbon-fold {
         position: absolute;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.1);
-      }
-
-      .ribbon-top-left::after,
-      .ribbon-bottom-right::after {
-        bottom: -10px;
-        right: -10px;
-      }
-
-      .ribbon-top-right::after,
-      .ribbon-bottom-left::after {
-        bottom: -10px;
-        left: -10px;
-      }
-
-      /* Individual Ribbon Positions */
-      .ribbon-top-left {
-        top: -10px;
-        left: -10px;
-        transform: rotate(-45deg);
-        background: linear-gradient(225deg, var(--secondary-color), #ae7729);
-      }
-
-      .ribbon-top-right {
-        top: -10px;
-        right: -10px;
+        width: 12px;
+        height: 12px;
+        background: var(--ribbon-shadow);
         transform: rotate(45deg);
-        background: linear-gradient(225deg, var(--secondary-color), #ae7729);
+        z-index: 3;
       }
 
-      .ribbon-bottom-left {
-        bottom: -10px;
-        left: -10px;
-        transform: rotate(45deg);
-        background: linear-gradient(45deg, var(--secondary-color), #ae7729);
+      /* Top Left Ribbon */
+      .ribbon-tl {
+        top: 0;
+        left: 0;
       }
-
-      .ribbon-bottom-right {
-        bottom: -10px;
-        right: -10px;
+      .ribbon-tl::before {
+        top: 30px;
+        left: 30px;
+      }
+      .ribbon-tl::after {
+        top: 15px;
+        left: 20px;
         transform: rotate(-45deg);
-        background: linear-gradient(315deg, var(--secondary-color), #ae7729);
+      }
+      .ribbon-tl .ribbon-tail {
+        top: 40px;
+        left: 40px;
+        transform: rotate(45deg);
+      }
+      .ribbon-tl .ribbon-fold {
+        top: 35px;
+        left: 35px;
       }
 
-      /* Ribbon Fold Effect */
-      .ribbon::before {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-style: solid;
-      }
-
-      .ribbon-top-left::before,
-      .ribbon-bottom-right::before {
-        bottom: 0;
+      /* Top Right Ribbon */
+      .ribbon-tr {
+        top: 0;
         right: 0;
-        border-width: 0 0 15px 15px;
-        border-color: transparent transparent #d4a76a transparent;
+      }
+      .ribbon-tr::before {
+        top: 30px;
+        right: 30px;
+      }
+      .ribbon-tr::after {
+        top: 15px;
+        right: 20px;
+        transform: rotate(45deg);
+      }
+      .ribbon-tr .ribbon-tail {
+        top: 40px;
+        right: 40px;
+        transform: rotate(-45deg);
+      }
+      .ribbon-tr .ribbon-fold {
+        top: 35px;
+        right: 35px;
       }
 
-      .ribbon-top-right::before,
-      .ribbon-bottom-left::before {
+      /* Bottom Left Ribbon */
+      .ribbon-bl {
         bottom: 0;
         left: 0;
-        border-width: 0 15px 15px 0;
-        border-color: transparent #d4a76a transparent transparent;
+      }
+      .ribbon-bl::before {
+        bottom: 30px;
+        left: 30px;
+      }
+      .ribbon-bl::after {
+        bottom: 15px;
+        left: 20px;
+        transform: rotate(45deg);
+      }
+      .ribbon-bl .ribbon-tail {
+        bottom: 40px;
+        left: 40px;
+        transform: rotate(-45deg);
+      }
+      .ribbon-bl .ribbon-fold {
+        bottom: 35px;
+        left: 35px;
       }
 
-      /* Optional: Add decorative stitching */
-      .ribbon::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        background: repeating-linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0.5),
-          rgba(255, 255, 255, 0.5) 5px,
-          transparent 5px,
-          transparent 10px
-        );
-        top: 50%;
-        transform: translateY(-50%);
+      /* Bottom Right Ribbon */
+      .ribbon-br {
+        bottom: 0;
+        right: 0;
+      }
+      .ribbon-br::before {
+        bottom: 30px;
+        right: 30px;
+      }
+      .ribbon-br::after {
+        bottom: 15px;
+        right: 20px;
+        transform: rotate(-45deg);
+      }
+      .ribbon-br .ribbon-tail {
+        bottom: 40px;
+        right: 40px;
+        transform: rotate(45deg);
+      }
+      .ribbon-br .ribbon-fold {
+        bottom: 35px;
+        right: 35px;
       }
 
       .header {
@@ -607,12 +655,24 @@
     <div class="container">
       <div class="invitation-card">
         <div class="header">
+          <div class="ribbon-bow ribbon-tl">
+            <div class="ribbon-tail"></div>
+            <div class="ribbon-fold"></div>
+          </div>
+          <div class="ribbon-bow ribbon-tr">
+            <div class="ribbon-tail"></div>
+            <div class="ribbon-fold"></div>
+          </div>
+          <div class="ribbon-bow ribbon-bl">
+            <div class="ribbon-tail"></div>
+            <div class="ribbon-fold"></div>
+          </div>
+          <div class="ribbon-bow ribbon-br">
+            <div class="ribbon-tail"></div>
+            <div class="ribbon-fold"></div>
+          </div>
           <h1>Save The Date</h1>
         </div>
-        <div class="ribbon ribbon-top-left"></div>
-        <div class="ribbon ribbon-top-right"></div>
-        <div class="ribbon ribbon-bottom-left"></div>
-        <div class="ribbon ribbon-bottom-right"></div>
 
         <div class="couple-names">
           <div>Oby</div>
