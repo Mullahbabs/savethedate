@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oly & Chuvale - Save the Date</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your actual EmailJS user ID
+        })();
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary-color: #8b4513;
+            --secondary-color: #d4a76a;
+            --accent-color: #e8c39e;
+            --text-color: #333;
+            --light-color: #f9f5f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(249, 245, 240, 0.85);
+            z-index: 0;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid var(--accent-color);
+        }
+        
+        .invitation-card {
+            padding: 40px;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 30px 0;
+            line-height: 1.2;
+            color: var(--primary-color);
+        }
+        
+        .ampersand {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            color: var(--secondary-color);
+        }
+        
+        .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin: 20px 0 30px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tagline::before, .tagline::after {
+            content: '~';
+            margin: 0 10px;
+            color: var(--secondary-color);
+        }
+        
+        .date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+        
+        .location {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-attend {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-attend:hover {
+            background-color: #6d360d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-not-attend {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-not-attend:hover {
+            background-color: rgba(139, 69, 19, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .btn-calendar {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-calendar:hover {
+            background-color: #c0955a;
+            transform: translateY(-2px);
+        }
+        
+        .response-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .invitation-card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .couple-names {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .date, .location {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .couple-names {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invitation-card">
+            <div class="header">
+                <h1>SAVE THE DATE</h1>
+            </div>
+            
+            <div class="couple-names">
+                <div>Oly</div>
+                <div class="ampersand">&</div>
+                <div>Chuvale</div>
+            </div>
+            
+            <div class="tagline">Love, Laughter & Our Big Day</div>
+            
+            <div class="date">WEDNESDAY, FEBRUARY 11, 2026</div>
+            
+            <div class="location">CALABAR, NIGERIA</div>
+            
+            <div class="cta-buttons">
+                <button class="btn btn-attend" id="attendBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                    </svg>
+                    I'll definitely be there
+                </button>
+                
+                <button class="btn btn-not-attend" id="notAttendBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                    My heart's with you, even if I can't be there
+                </button>
+                
+                <button class="btn btn-calendar" id="calendarBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>
+                    Add to Calendar
+                </button>
+            </div>
+            
+            <div id="responseMessage" class="response-message"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // EmailJS configuration
+            const serviceID = 'YOUR_EMAILJS_SERVICE_ID'; // Replace with your EmailJS service ID
+            const templateID = 'YOUR_EMAILJS_TEMPLATE_ID'; // Replace with your EmailJS template ID
+            
+            // Response buttons functionality
+            const attendBtn = document.getElementById('attendBtn');
+            const notAttendBtn = document.getElementById('notAttendBtn');
+            const calendarBtn = document.getElementById('calendarBtn');
+            const responseMessage = document.getElementById('responseMessage');
+            
+            // Handle attendance response
+            function handleResponse(attending) {
+                const userEmail = prompt('Please enter your email address:');
+                if (!userEmail) return;
+                
+                const userName = prompt('Please enter your name:');
+                
+                const templateParams = {
+                    to_name: 'Oly & Chuvale',
+                    from_name: userName || 'Guest',
+                    from_email: userEmail,
+                    message: attending ? 'I will be attending your wedding!' : 'I regret that I cannot attend your wedding, but my heart is with you.',
+                    attending: attending ? 'Yes' : 'No'
+                };
+                
+                emailjs.send(serviceID, templateID, templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        showMessage('Thank you for your response! We look forward to seeing you.', 'success');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        showMessage('There was an error sending your response. Please try again later.', 'error');
+                    });
+            }
+            
+            // Show message to user
+            function showMessage(message, type) {
+                responseMessage.textContent = message;
+                responseMessage.className = `response-message ${type}`;
+                responseMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    responseMessage.style.display = 'none';
+                }, 5000);
+            }
+            
+            // Add to calendar functionality
+            function addToCalendar() {
+                const event = {
+                    title: "Oly & Chuvale's Wedding",
+                    description: "Join us as we celebrate our love and begin our journey together as husband and wife!",
+                    location: "Calabar, Nigeria",
+                    startTime: "2026-02-11T12:00:00",
+                    endTime: "2026-02-11T23:59:00"
+                };
+                
+                // For Google Calendar
+                const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=20260211T120000Z/20260211T235900Z&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+                
+                // For Outlook Calendar
+                const outlookCalendarUrl = `https://outlook.live.com/owa/?path=/calendar/action/compose&rru=addevent&subject=${encodeURIComponent(event.title)}&startdt=2026-02-11T12:00:00&enddt=2026-02-11T23:59:00&body=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+                
+                // For iCal download
+                const icalContent = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'BEGIN:VEVENT',
+                    `SUMMARY:${event.title}`,
+                    `DESCRIPTION:${event.description}`,
+                    `LOCATION:${event.location}`,
+                    'DTSTART:20260211T120000Z',
+                    'DTEND:20260211T235900Z',
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ].join('\n');
+                
+                const icalBlob = new Blob([icalContent], { type: 'text/calendar;charset=utf-8' });
+                const icalUrl = URL.createObjectURL(icalBlob);
+                
+                // Create a menu to let user choose calendar option
+                const choice = confirm("Choose your calendar:\n\nClick OK for Google Calendar\nClick Cancel for Outlook Calendar\n\nOr download the .ics file after making your selection.");
+                
+                if (choice) {
+                    window.open(googleCalendarUrl, '_blank');
+                } else {
+                    window.open(outlookCalendarUrl, '_blank');
+                }
+                
+                // Always offer the iCal download
+                const downloadLink = document.createElement('a');
+                downloadLink.href = icalUrl;
+                downloadLink.download = 'Oly-Chuvale-Wedding.ics';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+            
+            // Event listeners
+            attendBtn.addEventListener('click', () => handleResponse(true));
+            notAttendBtn.addEventListener('click', () => handleResponse(false));
+            calendarBtn.addEventListener('click', addToCalendar);
+        });
+    </script>
+</body>
+</html>
